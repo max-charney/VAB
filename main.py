@@ -2,22 +2,16 @@ from youtube_transcript_api import YouTubeTranscriptApi
 from youtube_transcript_api.formatters import TextFormatter
 import openai
 
-video_id = 'kyvw6G9Max0'
-question = "What findings were made based on the Mayan Hieroglyphics, and at about what time in the transcript does the video talk about the hieroglyphics?"
+#INPUTS
+video_id = 'Video ID (last part of video URL)'
+question = "Question; for example: What is this video about?"
 
 unformatted_transcript = YouTubeTranscriptApi.get_transcript(video_id)
-
-# base_lang='en'
-# wanted_lang = 'en'
-
-# base_obj=unformatted_transcript.find_transcript([base_lang])
-# base_tran = base_obj.fetch()
-
 fmt = TextFormatter()
 transcript = fmt.format_transcript(unformatted_transcript)
 
 def gpt3(prompt):
-    openai.api_key = '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'
+    openai.api_key = 'Open AI api key'
 
     response = openai.Completion.create(
     model="text-davinci-003",
